@@ -1,6 +1,6 @@
 # query_samples.py
 
-from relationship_app.models import Author, Book, Library
+from relationship_app.models import Author, Book, Library, Librarian
 
 def query_books_by_author(author_name):
     """
@@ -32,6 +32,7 @@ def retrieve_librarian_for_library(library_name):
     try:
         library = Library.objects.get(name=library_name)
         librarian = library.librarian
+        Librarian.objects.get(library)
         return librarian
     except Library.DoesNotExist:
         return None
