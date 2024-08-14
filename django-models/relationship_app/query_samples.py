@@ -30,9 +30,8 @@ def retrieve_librarian_for_library(library_name):
     Retrieve the librarian for a specific library.
     """
     try:
-        librarian = Library.objects.get(name=library_name)
-        # librarian = library.librarian
-        Librarian.objects.get(library = library_name)
+        library = Library.objects.get(name=library_name)
+        librarian = Librarian.objects.get(library=library)
         # Librarian.objects.get(library)
         return librarian
     except Library.DoesNotExist:
