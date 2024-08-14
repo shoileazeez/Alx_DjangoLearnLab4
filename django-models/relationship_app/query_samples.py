@@ -32,7 +32,7 @@ def retrieve_librarian_for_library(library_name):
     try:
         library = Library.objects.get(name=library_name)
         librarian = library.librarian
-        Librarian.objects.get(library)
+        Librarian.objects.get(library = library_name)
         return librarian
     except Library.DoesNotExist:
         return None
