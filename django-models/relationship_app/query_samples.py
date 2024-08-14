@@ -1,6 +1,6 @@
 # query_samples.py
 
-from relationship_app.models import Author, Book, Library, Librarian
+from relationship_app.models import Author, Book, Library
 
 def query_books_by_author(author_name):
     """
@@ -19,7 +19,7 @@ def list_all_books_in_library(library_name):
     """
     try:
         library = Library.objects.get(name=library_name)
-        books = library.book_set.all()
+        books = library.books.all()
         return books
     except Library.DoesNotExist:
         return None
