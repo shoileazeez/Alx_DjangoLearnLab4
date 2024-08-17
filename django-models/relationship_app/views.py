@@ -1,27 +1,25 @@
-from django.shortcuts import render
-from django.views.generic import DetailView
-from .models import Book
-from .models import Library
-from django.views.generic.detail import DetailView
-# from django.http import HttpResponse
+from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+# relationship_app/views.py
+from django.contrib.auth.views import LoginView
+# relationship_app/views.py
+from django.contrib.auth.views import LogoutView
 
-def list_books(request):
-      """Retrieves all books and renders a template displaying the list."""
-      books = Book.objects.all()  # Fetch all book instances from the database
-      context = {'book_list': books}  # Create a context dictionary with book list
-      return render(request, 'relationship_app/list_books.html', context)
-      # return HttpResponse(book_list, content_type="text/plain")
+class CustomLoginView(LoginView):
+    template_name = 'relationship_app/login.html'
+class CustomLogoutView(LogoutView):
+    template_name = 'relationship_app/logout.html'    
+
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('home')  # Adjust 'home' to your desired redirect URL
+    else:
+        form = UserCreationForm()
+    return render(request, 'relationship_app/register.html', {'form': form})
 
 
-# class ModelDetailView(DetailView):
-#     template_name = ".html"
-  
-"""A class-based view for displaying details of a specific book."""
-  
-def LibraryDetailView(self, request):
-    """Injects additional context data specific to the book."""
-    # context = super().get_context_data(**kwargs)  # Get default context data
-    context = {'detail_view': book}
-    book = self.get_object()# Retrieve the current book instance
-    return render(request, 'relationship_app/library_detail.html', context)
-  
