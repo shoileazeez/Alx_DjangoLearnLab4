@@ -29,12 +29,14 @@
 # relationship_app/urls.py
 from django.urls import path
 from . import views
-from .views import admin_view, librarian_view,  member_view
+from . import librarian_view
+from . import Member_view
+# from .views import admin_view, librarian_view,  member_view
 
 urlpatterns = [
-    path('admin/', views.admin_view, name='admin_view'),
-    path('librarian/', views.librarian_view, name='librarian_view'),
-    path('member/', views.member_view, name='member_view'),
+    path('admins', views.admin_view, name='admins'),
+    path('librarians', librarian_view.librarian_view, name='librarians'),
+    path('members', Member_view.member_view, name='members'),
 ]
 
 
