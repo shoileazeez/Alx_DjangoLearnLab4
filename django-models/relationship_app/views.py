@@ -24,5 +24,4 @@ def LibraryDetailView(self, request):
     context = {'detail_view': book}
     book = self.get_object()# Retrieve the current book instance
     return render(request, 'relationship_app/library_detail.html', context)
-    # context['average_rating'] = book.get_average_rating() 
-# Create your views here.
+  
