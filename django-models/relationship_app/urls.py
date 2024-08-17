@@ -22,4 +22,9 @@ urlpatterns = [
     path('login/', CustomLoginView.as_view(), name='login'),
     path('logout/', CustomLogoutView.as_view(), name='logout'),
     path('register/', register, name='register'),
+    path('views.register", "LogoutView.as_view(template_name=", "LoginView.as_view(template_name=')
 ]
+
+
+
+# views.register", "LogoutView.as_view(template_name=", "LoginView.as_view(template_name=
