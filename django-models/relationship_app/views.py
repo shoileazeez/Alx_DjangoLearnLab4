@@ -9,7 +9,7 @@ def list_books(request):
       """Retrieves all books and renders a template displaying the list."""
       books = Book.objects.all()  # Fetch all book instances from the database
       context = {'book_list': books}  # Create a context dictionary with book list
-      return render(request, 'list_books.html', context)
+      return render(request, 'relationship_app/list_books.html', context)
       # return HttpResponse(book_list, content_type="text/plain")
 
 
@@ -23,6 +23,6 @@ def LibraryDetailView(self, request):
     # context = super().get_context_data(**kwargs)  # Get default context data
     context = {'detail_view': book}
     book = self.get_object()# Retrieve the current book instance
-    return render(request, 'library_detail.html', context)
+    return render(request, 'relationship_app/library_detail.html', context)
     # context['average_rating'] = book.get_average_rating() 
 # Create your views here.
