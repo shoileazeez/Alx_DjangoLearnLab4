@@ -41,7 +41,7 @@ def is_member(user):
 def admin_view(request):
     return render(request, 'relationship_app/admin_view.html')
 
-@user_passes_test(lambda u: u.userprofile.role == 'Librarian')
+@user_passes_test(lambda u: u.userprofile.role == 'Librarians')
 def librarian_view(request):
     return render(request, 'templates/relationship_app/librarian_view.html')
 
