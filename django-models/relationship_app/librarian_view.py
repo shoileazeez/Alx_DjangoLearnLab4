@@ -24,7 +24,7 @@ from django.shortcuts import render
 
 
 def is_librarian(user):
-    return user.is_authenticated and user.userprofile.role == 'Librarian'
+    return user.is_authenticated and user.userprofile.role == 'Librarians'
 
 
 @user_passes_test(is_librarian)
