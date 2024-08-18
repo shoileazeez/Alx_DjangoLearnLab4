@@ -30,13 +30,13 @@
 from django.urls import path
 from . import views
 from . import librarian_view
-from . import Member_view
+from . import member_view
 # from .views import admin_view, librarian_view,  member_view
 
 urlpatterns = [
     path('admins', views.admin_view, name='admins'),
     path('librarians', librarian_view.librarian_view, name='librarians'),
-    path('members', Member_view.member_view, name='members'),
+    path('members', member_view.member_view, name='members'),
 ]
 
 # relationship_app/urls.py
