@@ -40,7 +40,7 @@ from .models import UserProfile  # Assuming you have UserProfile model linked to
 def is_librarian(user):
     # Check if the user is authenticated and has the role 'Librarian'
     try:
-        return user.is_authenticated and user.userprofile.role == 'Librarian'
+        return user.is_authenticated and user.userprofile.role == 'Librarians'
     except UserProfile.DoesNotExist:
         return False
 
