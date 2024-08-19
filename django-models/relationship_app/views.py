@@ -120,6 +120,7 @@ def delete_book(request, book_id):
 from django.shortcuts import render
 from .models import Book
 from .models import Library
+from django.views.generic.detail import DetailView
 
 def book_list_view(request):
     books = Book.objects.all()
