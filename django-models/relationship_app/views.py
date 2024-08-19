@@ -25,6 +25,19 @@
 # relationship_app/views.py
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
+from .models import UserProfile
+
+def is_librarian(user):
+    # Check if the user is authenticated and has the role 'Librarian'
+    try:
+        return user.is_authenticated and user.userprofile.role == 'Librarian'
+    except UserProfile.DoesNotExist:
+        return False
+
+@user_passes_test(is_librarian, login_url='/login/', redirect_field_name=None)
+def librarian_view(request):
+    # View logic here
+    return render(request, 'librarian_template.html')  # Render a template for librarians
 
 # Helper functions to check user roles
 def is_admin(user):
@@ -32,7 +45,7 @@ def is_admin(user):
 
 def is_librarian(user):
     # return user.is_authenticated and user.userprofile.role == 'Librarians'
-    return user.userprofile.role == 'Librarians'
+    return user.userprofile.role == 'Librarian'
 
 def is_member(user):
     return user.userprofile.role == 'Member'
