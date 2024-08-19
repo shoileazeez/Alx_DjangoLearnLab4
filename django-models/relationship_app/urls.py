@@ -37,6 +37,7 @@ urlpatterns = [
     path('admins', views.admin_view, name='admin_view'),
     path('librarians', librarian_view.librarian_view, name='librarian_view'),
     path('members', member_view.member_view, name='member_view'),
+    path('librarian/', views.librarian_view, name='librarian_view'),
 ]
 
 # relationship_app/urls.py

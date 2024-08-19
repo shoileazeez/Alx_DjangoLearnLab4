@@ -49,3 +49,19 @@ def librarian_view(request):
     # View logic here
     return render(request, 'librarian_template.html')  # Render a template for librarians
 
+
+
+def is_librarian(user):
+    if user.is_authenticated:
+        return user.userprofile.role == 'Librarians'
+    return False
+
+from django.contrib.auth.decorators import user_passes_test
+from django.shortcuts import render
+
+@user_passes_test(is_librarian)
+def librarian_view(request):
+    # Your view logic here
+    return render(request, 'librarian_template.html')
+
+
