@@ -25,19 +25,19 @@
 # relationship_app/views.py
 from django.contrib.auth.decorators import user_passes_test
 from django.shortcuts import render
-from .models import UserProfile
+# from .models import UserProfile
 
-def is_librarian(user):
-    # Check if the user is authenticated and has the role 'Librarian'
-    try:
-        return user.is_authenticated and user.userprofile.role == 'Librarian'
-    except UserProfile.DoesNotExist:
-        return False
+# def is_librarian(user):
+#     # Check if the user is authenticated and has the role 'Librarian'
+#     try:
+#         return user.is_authenticated and user.userprofile.role == 'Librarian'
+#     except UserProfile.DoesNotExist:
+#         return False
 
-@user_passes_test(is_librarian, login_url='/login/', redirect_field_name=None)
-def librarian_view(request):
-    # View logic here
-    return render(request, 'librarian_template.html')  # Render a template for librarians
+# @user_passes_test(is_librarian, login_url='/login/', redirect_field_name=None)
+# def librarian_view(request):
+#     # View logic here
+#     return render(request, 'librarian_template.html')  # Render a template for librarians
 
 # Helper functions to check user roles
 def is_admin(user):
@@ -117,3 +117,18 @@ def delete_book(request, book_id):
     return render(request, 'relationship_app/delete_book.html', {'book': book})
 
 
+from django.shortcuts import render
+from .models import Book
+from .models import Library
+
+def book_list_view(request):
+    books = Book.objects.all()
+    return render(request, 'relationship_app/book_list.html', {'books': books})
+
+from django.views.generic import DetailView
+
+
+class LibraryDetailView(DetailView):
+    model = Library
+    template_name = 'relationship_app/library_detail.html'
+    context_object_name = 'library'
