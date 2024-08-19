@@ -123,7 +123,7 @@ from .models import Library
 
 def book_list_view(request):
     books = Book.objects.all()
-    return render(request, 'relationship_app/book_list.html', {'books': books})
+    return render(request, 'relationship_app/list_books.html', {'books': books})
 
 from django.views.generic import DetailView
 
