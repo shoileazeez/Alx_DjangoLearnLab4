@@ -20,19 +20,14 @@ urlpatterns = [
     path('register/', views.register, name='register'),
 
     # Role-based views
-    path('admin_dashboard/', views.admin_view, name='admin_dashboard'),
-    path('librarian_dashboard/', views.librarian_view, name='librarian_dashboard'),
-    path('member_dashboard/', views.member_view, name='member_dashboard'),
+    
     
     
     
     # urls.py
 
 
-    path('admin/', admin_view, name='admin-view'),
-    path('librarian/', librarian_view, name='librarian-view'),
-    path('member/', member_view, name='member-view'),
-    # Other app-specific URLs...
+    
     
     path('admin/', admin_view, name='admin_view'),
     path('librarian/', librarian_view, name='librarian_view'),
