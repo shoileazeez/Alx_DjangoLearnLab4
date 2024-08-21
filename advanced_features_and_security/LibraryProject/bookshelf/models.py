@@ -53,5 +53,21 @@ class CustomUser(AbstractUser):
         return self.username   
     
 class ExampleModel(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)          
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)   
+    
+    
+class Article(models.Model):
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+
+    class Meta:
+        permissions = [
+            ('can_view', 'Can View Article'),
+            ('can_create', 'Can Create Article'),
+            ('can_edit', 'Can Edit Article'),
+            ('can_delete', 'Can Delete Article'),
+        ]
+
+    def __str__(self):
+        return self.title           
 # Create your models here.
