@@ -1,68 +1,24 @@
-# from django.urls import path
-# from . import views
-# from .views import list_books, LibraryDetailView
-
-# urlpatterns = [
-#     path('', views.list_books, name='book-list'),
-#     path('Detailview/', views.LibraryDetailView, name='deatilview'),
-# ]
-
-
-# from django.urls imyou can 
-
-# urlpatterns = [
-#     path('books/', book_list_view, name='book-list'),
-# ]
-
-# relationship_app/urls.py
-# from django.urls import path
-# from .views import CustomLoginView, CustomLogoutView, register
-
-# urlpatterns = [
-#     path('login/', CustomLoginView.as_view(), name='login'),
-#     path('logout/', CustomLogoutView.as_view(), name='logout'),
-#     path('register/', register, name='register'),
-#     path('views.register", "LogoutView.as_view(template_name=", "LoginView.as_view(template_name=')
-# ]
-
-
-# relationship_app/urls.py
 from django.urls import path
-from . import views
-from . import librarian_view
-from . import member_view
-# from .views import admin_view, librarian_view,  member_view
-from . import librarian_view
+from relationship_app import views  # Import views directly
+from django.contrib.auth.views import LoginView, LogoutView
 
 urlpatterns = [
-    path('admins', views.admin_view, name='admin_view'),
-    path('members', member_view.member_view, name='member_view'),
-    path('librarians', librarian_view.librarian_view, name='librarians'),
+    path('books/', views.list_books, name='list_books'),  # Function-based view
+    path('library/<int:pk>/', views.LibraryDetailView.as_view(), name='library_detail'),  # Class-based view
+    
+    # Django's built-in views
+    path('login/', LoginView.as_view(template_name='relationship_app/login.html'), name='login'),
+    path('logout/', LogoutView.as_view(template_name='relationship_app/logout.html'), name='logout'),
+    
+    # Custom views
+    path('custom_login/', views.CustomLoginView.as_view(), name='custom_login'),
+    path('custom_logout/', views.CustomLogoutView.as_view(), name='custom_logout'),
+
+    # Registration view (custom)
+    path('register/', views.register, name='register'),
+
+    # Role-based views
+    path('admin_dashboard/', views.admin_view, name='admin_dashboard'),
+    path('librarian_dashboard/', views.librarian_view, name='librarian_dashboard'),
+    path('member_dashboard/', views.member_view, name='member_dashboard'),
 ]
-
-# relationship_app/urls.py
-from django.urls import path
-from .views import add_book, edit_book, delete_book
-
-urlpatterns = [
-    path('add_book/', add_book, name='add_book'),
-    path('edit_book/', edit_book, name='edit_book'),
-    path('book/delete/<int:book_id>/', delete_book, name='delete_book'),
-]
-# add_book/", "edit_book/
-
-# views.register", "LogoutView.as_view(template_name=", "LoginView.as_view(template_name=
-
-
-from django.urls import path
-from .views import book_list_view, LibraryDetailView
-
-urlpatterns = [
-    path('books/', book_list_view, name='book-list'),
-    path('library/<int:pk>/', LibraryDetailView.as_view(), name='library-detail'),
-]
-
-
-
-  
-  
