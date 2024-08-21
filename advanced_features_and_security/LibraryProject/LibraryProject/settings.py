@@ -155,3 +155,5 @@ CSP_SCRIPT_SRC = ("'self'", "'unsafe-inline'",)
 CSP_IMG_SRC = ("'self'", "data:")
 CSP_STYLE_SRC = ("'self'", "'unsafe-inline'",)
 
+# Configure Django to recognize that requests are made over HTTPS
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
