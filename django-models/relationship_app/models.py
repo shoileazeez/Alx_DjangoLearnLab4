@@ -20,12 +20,12 @@ class Library(models.Model):
     def __str__(self):
         return self.name
 
-# class Librarian(models.Model):
-#     name = models.CharField(max_length=255)
-#     library = models.OneToOneField(Library, on_delete=models.CASCADE, related_name='librarian')
+class Librarian(models.Model):
+    name = models.CharField(max_length=255)
+    library = models.OneToOneField(Library, on_delete=models.CASCADE, related_name='librarian')
 
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name
 
 
 # # Create your models here.
@@ -38,7 +38,7 @@ from django.dispatch import receiver
 class UserProfile(models.Model):
     ROLE_CHOICES = [
         ('Admin', 'Admin'),
-        ('Librarian', 'Librarians'),
+        ('Librarian', 'Librarian'),
         ('Member', 'Member'),
     ]
 
@@ -50,9 +50,11 @@ class UserProfile(models.Model):
 
 # Signal to create or update user profile automatically
 @receiver(post_save, sender=User)
-def create_or_update_user_profile(sender, instance, created, **kwargs):
+def create_user_profile(sender, instance, created, **kwargs):
     if created:
         UserProfile.objects.create(user=instance)
+@receiver(post_save, sender=User)
+def save_user_profile(sender, instance, **kwargs):
     instance.userprofile.save()
     
     
