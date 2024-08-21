@@ -25,5 +25,11 @@ def delete_article(request, pk):
     # Logic to delete the article
     return render(request, 'bookshelf/delete_article.html')
 
- book_list", "books
+
+
+def search_articles(request):
+    query = request.GET.get('q', '')
+    results = Article.objects.filter(title__icontains=query)
+    return render(request, 'bookshelf/search_results.html', {'results': results})
+
 # Create your views here.
