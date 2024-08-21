@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import permission_required
 from django.shortcuts import render, get_object_or_404
 from .models import Article
+from .forms import ExampleForm
+
 
 @permission_required('bookshelf.can_view', raise_exception=True)
 def view_article(request, pk):
@@ -33,3 +35,16 @@ def search_articles(request):
     return render(request, 'bookshelf/search_results.html', {'results': results})
 
 # Create your views here.
+
+
+def example_view(request):
+    if request.method == 'POST':
+        form = ExampleForm(request.POST)
+        if form.is_valid():
+            # Process the form data
+            form.save()
+            
+    else:
+        form = ExampleForm()
+    
+    return render(request, 'form_example.html', {'form': form})
